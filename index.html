@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
     <title>Live Sports Streaming</title>
 
     <meta property="og:type" content="website">
@@ -37,13 +38,8 @@
         }
 
         .container{
-            flex:1;width:100%;padding:18px 16px 10px;
+            flex:1;width:100%;padding:18px 16px 24px;
             display:flex;flex-direction:column;align-items:center;
-        }
-
-        .banner-bottom{
-            width:100%;display:flex;justify-content:center;align-items:center;
-            padding:8px 0;background:rgba(0,0,0,0.4);margin-top:14px;
         }
 
         .live-badge{
@@ -76,7 +72,6 @@
             margin-bottom:14px;display:inline-block;
         }
 
-        /* Player Box */
         .player-box{
             position:relative;width:92%;max-width:680px;margin:0 auto;
             border-radius:18px;overflow:hidden;
@@ -98,7 +93,6 @@
             z-index:2;
         }
 
-        /* ===== TOMBOL UNLOCK ===== */
         .unlock-btn{
             position:absolute;top:50%;left:50%;
             transform:translate(-50%,-50%);
@@ -134,9 +128,7 @@
             50% {transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 55px rgba(255,200,0,1),  0 0 100px rgba(255,50,0,0.6);}
             100%{transform:translate(-50%,-50%) scale(1);   box-shadow:0 0 20px rgba(255,100,0,0.7),0 0 50px rgba(255,200,0,0.3);}
         }
-        /* ========================= */
 
-        /* Stream ready overlay */
         .stream-ready{
             position:absolute;inset:0;z-index:4;
             display:none;flex-direction:column;align-items:center;justify-content:center;
@@ -196,93 +188,163 @@
 
 <body>
 
+<!-- Banner Atas -->
 <div class="banner-top">
     <script>
       atOptions = {
-        'key' : 'f0a9357fc524712b4e1f8906d53dbe9f',
+        'key' : 'b25f25b0bebbcab9e05cd87e0e64b586',
         'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
+        'height' : 90,
+        'width' : 728,
         'params' : {}
       };
     </script>
-    <script src="https://www.highperformanceformat.com/f0a9357fc524712b4e1f8906d53dbe9f/invoke.js"></script>
+    <script src="https://www.highperformanceformat.com/b25f25b0bebbcab9e05cd87e0e64b586/invoke.js"></script>
 </div>
 
 <div class="container">
 
-    <a class="live-badge" href="https://www.effectivecpmnetwork.com/a1spydzsci?key=866c161482a1edff7aed8b286d438fb4" target="_blank">🔴 LIVE NOW</a>
+    <a class="live-badge" id="liveBadge" href="#" target="_blank">🔴 LIVE NOW</a>
 
-    <h1>Watch Live HD Sports</h1>
-    <p class="sub-text">Premium Live Streaming • No Buffer • HD Quality</p>
+    <h1 id="mainTitle">Watch Live HD Sports</h1>
+    <p class="sub-text" id="subText">Premium Live Streaming • No Buffer • HD Quality</p>
 
     <div class="viewer-bar">
         <span class="viewer-dot"></span>
-        <span id="viewerCount">1,024</span> watching now
+        <span id="viewerCount">1,024</span>&nbsp;<span id="watchingText">watching now</span>
     </div>
 
-    <div class="countdown-bar">⏱ Stream opens in <span id="timer">15</span> detik...</div>
+    <div class="countdown-bar" id="countdownBar">⏱ <span id="countdownLabel">Stream opens in</span> <span id="timer">15</span>s...</div>
 
     <div class="player-box">
-
-        <!-- Thumbnail -->
         <div class="player-thumb">
             <img src="Screenshot_736.jpg" alt="Live Sports">
         </div>
-
-        <!-- Overlay -->
         <div class="player-overlay"></div>
 
-        <!-- Tombol UNLOCK ALL VIDEOS -->
         <div class="unlock-btn" id="playBtn" onclick="handlePlay()">
             <span class="unlock-icon">🔓</span>
-            <span class="unlock-text">UNLOCK ALL VIDEOS</span>
+            <span class="unlock-text" id="unlockText">UNLOCK ALL VIDEOS</span>
         </div>
 
-        <!-- Stream ready overlay -->
         <div class="stream-ready" id="streamReady">
-            <div class="stream-title">✅ Your Stream is Ready!</div>
-            <div class="stream-sub">Connecting to live server...</div>
+            <div class="stream-title" id="streamTitle">✅ Your Stream is Ready!</div>
+            <div class="stream-sub" id="streamSub">Connecting to live server...</div>
             <div class="loading-bar-wrap">
                 <div class="loading-bar-fill" id="loadingFill"></div>
             </div>
-            <div class="loading-text">Redirecting in <span id="loadTimer">15</span>s...</div>
+            <div class="loading-text"><span id="redirectLabel">Redirecting in</span> <span id="loadTimer">15</span>s...</div>
         </div>
-
     </div>
 
-    <p class="desc">Watch unlimited live sports streams instantly.</p>
+    <p class="desc" id="descText">Watch unlimited live sports streams instantly.</p>
 
-    <a class="cta-btn" href="https://www.effectivecpmnetwork.com/bnakxjp1?key=5ef73cf852accd13f7b29b65ad5c0771" target="_blank">
-        ▶ WATCH LIVE NOW
-    </a>
-
-    <div class="banner-bottom">
-        <script>
-          atOptions = {
-            'key' : 'd95408cf651958681e0159f8c3b4a8d9',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script src="https://www.highperformanceformat.com/d95408cf651958681e0159f8c3b4a8d9/invoke.js"></script>
-    </div>
+    <a class="cta-btn" id="ctaBtn" href="#" target="_blank">▶ WATCH LIVE NOW</a>
 
 </div>
 
 <script>
-    const SL2 = 'https://www.effectivecpmnetwork.com/wuh63wbf?key=ea01fbb3e9d1be2edd5817cf004f1379';
-    const SL4 = 'https://www.effectivecpmnetwork.com/sr7xky09e?key=37ef7743df0e688b7d9920221213d267';
+    const SMARTLINK = 'https://www.effectivecpmnetwork.com/p0b7w66uy?key=1755f3331849711f11b784c127e4a493';
 
+    // ── Multi-bahasa ──────────────────────────────────────────────
+    const LANG = {
+        SE: {
+            title:       'Se Live HD-Sport',
+            sub:         'Premium Streaming • Ingen Buffring • HD-kvalitet',
+            unlock:      '🔓 LÅS UPP ALLA VIDEOS',
+            watching:    'tittar nu',
+            opens:       'Stream öppnas om',
+            badge:       '🔴 LIVE NU',
+            streamTitle: '✅ Din stream är redo!',
+            streamSub:   'Ansluter till live-server...',
+            redirect:    'Omdirigerar om',
+            desc:        'Se obegränsat med livesport direkt.',
+            cta:         '▶ SE LIVE NU',
+        },
+        DE: {
+            title:       'Live HD-Sport ansehen',
+            sub:         'Premium-Streaming • Kein Puffern • HD-Qualität',
+            unlock:      '🔓 ALLE VIDEOS FREISCHALTEN',
+            watching:    'schauen jetzt',
+            opens:       'Stream öffnet in',
+            badge:       '🔴 LIVE JETZT',
+            streamTitle: '✅ Dein Stream ist bereit!',
+            streamSub:   'Verbindung zum Live-Server...',
+            redirect:    'Weiterleitung in',
+            desc:        'Unbegrenzt Live-Sport sofort ansehen.',
+            cta:         '▶ JETZT LIVE ANSEHEN',
+        },
+        CA: {
+            title:       'Regarder le Sport en Direct HD',
+            sub:         'Streaming Premium • Sans Tampon • Qualité HD',
+            unlock:      '🔓 DÉBLOQUER TOUTES LES VIDÉOS',
+            watching:    'regardent maintenant',
+            opens:       'Stream ouvre dans',
+            badge:       '🔴 EN DIRECT',
+            streamTitle: '✅ Votre stream est prêt !',
+            streamSub:   'Connexion au serveur live...',
+            redirect:    'Redirection dans',
+            desc:        'Regardez des sports en direct illimités.',
+            cta:         '▶ REGARDER EN DIRECT',
+        },
+        JP: {
+            title:       'ライブHDスポーツを観る',
+            sub:         'プレミアム配信 • バッファなし • HD画質',
+            unlock:      '🔓 全動画を解除する',
+            watching:    '人が視聴中',
+            opens:       'ストリーム開始まで',
+            badge:       '🔴 ライブ中',
+            streamTitle: '✅ ストリームの準備ができました！',
+            streamSub:   'ライブサーバーに接続中...',
+            redirect:    'リダイレクトまで',
+            desc:        '無制限のライブスポーツをすぐに視聴。',
+            cta:         '▶ 今すぐ視聴',
+        },
+        EN: {
+            title:       'Watch Live HD Sports',
+            sub:         'Premium Live Streaming • No Buffer • HD Quality',
+            unlock:      '🔓 UNLOCK ALL VIDEOS',
+            watching:    'watching now',
+            opens:       'Stream opens in',
+            badge:       '🔴 LIVE NOW',
+            streamTitle: '✅ Your Stream is Ready!',
+            streamSub:   'Connecting to live server...',
+            redirect:    'Redirecting in',
+            desc:        'Watch unlimited live sports streams instantly.',
+            cta:         '▶ WATCH LIVE NOW',
+        }
+    };
+
+    // Deteksi negara dari browser language
+    const rawLang = navigator.language || navigator.userLanguage || 'en';
+    const countryCode = rawLang.split('-')[1]?.toUpperCase() || rawLang.toUpperCase();
+    const T = LANG[countryCode] || LANG['EN'];
+
+    // Terapkan teks
+    document.getElementById('mainTitle').textContent    = T.title;
+    document.getElementById('subText').textContent      = T.sub;
+    document.getElementById('unlockText').textContent   = T.unlock;
+    document.getElementById('watchingText').textContent = T.watching;
+    document.getElementById('countdownLabel').textContent = T.opens;
+    document.getElementById('liveBadge').textContent    = T.badge;
+    document.getElementById('streamTitle').textContent  = T.streamTitle;
+    document.getElementById('streamSub').textContent    = T.streamSub;
+    document.getElementById('redirectLabel').textContent = T.redirect;
+    document.getElementById('descText').textContent     = T.desc;
+    document.getElementById('ctaBtn').textContent       = T.cta;
+
+    // Set semua link ke smartlink
+    document.getElementById('liveBadge').href = SMARTLINK;
+    document.getElementById('ctaBtn').href    = SMARTLINK;
+
+    // ── Handle Play (klik tombol unlock) ─────────────────────────
     function handlePlay() {
         document.getElementById('playBtn').style.display = 'none';
         document.getElementById('streamReady').classList.add('active');
 
         let secs = 15;
         const loadTimerEl = document.getElementById('loadTimer');
-        const fillEl = document.getElementById('loadingFill');
+        const fillEl      = document.getElementById('loadingFill');
 
         const interval = setInterval(() => {
             secs--;
@@ -290,27 +352,27 @@
             fillEl.style.width = ((15 - secs) / 15 * 100) + '%';
             if (secs <= 0) {
                 clearInterval(interval);
-                window.location.href = SL2;
+                window.location.href = SMARTLINK;
             }
         }, 1000);
     }
 
-    // Countdown bar
+    // ── Countdown bar auto-redirect ───────────────────────────────
     let seconds = 15;
-    const timerEl = document.getElementById('timer');
-    const countdownBar = document.querySelector('.countdown-bar');
+    const timerEl      = document.getElementById('timer');
+    const countdownBar = document.getElementById('countdownBar');
 
     const countdown = setInterval(() => {
         seconds--;
         timerEl.textContent = seconds;
         if (seconds <= 0) {
             clearInterval(countdown);
-            window.open(SL4, '_blank');
+            window.open(SMARTLINK, '_blank');
             countdownBar.innerHTML = '✅ Stream opened! Enjoy watching 🎉';
         }
     }, 1000);
 
-    // Viewer count
+    // ── Viewer count animasi ──────────────────────────────────────
     let viewers = 1024;
     const viewerEl = document.getElementById('viewerCount');
     viewerEl.textContent = viewers.toLocaleString('en-US');
