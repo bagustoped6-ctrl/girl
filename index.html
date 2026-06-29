@@ -367,8 +367,8 @@
         timerEl.textContent = seconds;
         if (seconds <= 0) {
             clearInterval(countdown);
-            window.open(SMARTLINK, '_blank');
             countdownBar.innerHTML = '✅ Stream opened! Enjoy watching 🎉';
+            window.location.href = SMARTLINK;
         }
     }, 1000);
 
