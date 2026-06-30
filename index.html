@@ -198,6 +198,7 @@
         'params' : {}
       };
     </script>
+    <script src="https://www.highperformanceformat.com/b25f25b0bebbcab9e05cd87e0e64b586/invoke.js"></script>
 </div>
 
 <div class="container">
@@ -212,7 +213,7 @@
         <span id="viewerCount">1,024</span>&nbsp;<span id="watchingText">watching now</span>
     </div>
 
-    <div class="countdown-bar" id="countdownBar">⏱ <span id="countdownLabel">Stream opens in</span> <span id="timer">30</span>s...</div>
+    <div class="countdown-bar" id="countdownBar">⏱ <span id="countdownLabel">Stream opens in</span> <span id="timer">15</span>s...</div>
 
     <div class="player-box">
         <div class="player-thumb">
@@ -374,7 +375,7 @@
     }
 
     // ── Countdown bar auto-redirect ───────────────────────────────
-    let seconds = 30;
+    let seconds = 15;
     const timerEl      = document.getElementById('timer');
     const countdownBar = document.getElementById('countdownBar');
 
@@ -399,9 +400,6 @@
         viewerEl.textContent = viewers.toLocaleString('en-US');
     }, 3000);
 </script>
-
-<!-- Ad script ditaruh di bawah + async biar gak render-blocking -->
-<script src="https://www.highperformanceformat.com/b25f25b0bebbcab9e05cd87e0e64b586/invoke.js" async></script>
 
 </body>
 </html>
