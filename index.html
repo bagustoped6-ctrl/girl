@@ -9,7 +9,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Live Sports Streaming - Watch Live HD">
     <meta property="og:description" content="Watch unlimited live sports streams instantly. Premium Live Streaming • No Buffer • HD Quality.">
-    <meta property="og:image" content="Screenshot_736.jpg">
+    <meta property="og:image" content="Screenshot_736.webp">
     <meta property="og:image:type" content="image/webp">
     <meta property="og:url" content="https://baseball2026.playrushgo.site">
     <meta property="fb:app_id" content="">
@@ -26,7 +26,6 @@
                 url('realistic-neon-lights-background_52683-60202.webp');
             background-size:cover;
             background-position:center;
-            background-attachment:fixed;
             min-height:100vh;
             display:flex;
             flex-direction:column;
@@ -199,7 +198,6 @@
         'params' : {}
       };
     </script>
-    <script src="https://www.highperformanceformat.com/b25f25b0bebbcab9e05cd87e0e64b586/invoke.js"></script>
 </div>
 
 <div class="container">
@@ -218,7 +216,7 @@
 
     <div class="player-box">
         <div class="player-thumb">
-            <img src="Screenshot_736.jpg" alt="Live Sports">
+            <img src="Screenshot_736.webp" alt="Live Sports">
         </div>
         <div class="player-overlay"></div>
 
@@ -337,8 +335,26 @@
     document.getElementById('liveBadge').href = SMARTLINK;
     document.getElementById('ctaBtn').href    = SMARTLINK;
 
+    // ── State timer global (biar gak race condition) ──────────────
+    let redirected = false;
+    let countdown  = null;
+    let unlockTimer = null;
+    let viewerInterval = null;
+
+    function goToSmartlink() {
+        if (redirected) return; // cegah double-fire kalau dua timer kebetulan barengan
+        redirected = true;
+        if (countdown)      clearInterval(countdown);
+        if (unlockTimer)    clearInterval(unlockTimer);
+        if (viewerInterval) clearInterval(viewerInterval);
+        window.location.href = SMARTLINK;
+    }
+
     // ── Handle Play (klik tombol unlock) ─────────────────────────
     function handlePlay() {
+        // matikan countdown awal supaya gak race sama timer unlock
+        if (countdown) clearInterval(countdown);
+
         document.getElementById('playBtn').style.display = 'none';
         document.getElementById('streamReady').classList.add('active');
 
@@ -346,29 +362,29 @@
         const loadTimerEl = document.getElementById('loadTimer');
         const fillEl      = document.getElementById('loadingFill');
 
-        const interval = setInterval(() => {
+        unlockTimer = setInterval(() => {
             secs--;
             loadTimerEl.textContent = secs;
             fillEl.style.width = ((15 - secs) / 15 * 100) + '%';
             if (secs <= 0) {
-                clearInterval(interval);
-                window.location.href = SMARTLINK;
+                clearInterval(unlockTimer);
+                goToSmartlink();
             }
         }, 1000);
     }
 
     // ── Countdown bar auto-redirect ───────────────────────────────
-    let seconds = 30;
+    let seconds = 15;
     const timerEl      = document.getElementById('timer');
     const countdownBar = document.getElementById('countdownBar');
 
-    const countdown = setInterval(() => {
+    countdown = setInterval(() => {
         seconds--;
         timerEl.textContent = seconds;
         if (seconds <= 0) {
             clearInterval(countdown);
             countdownBar.innerHTML = '✅ Stream opened! Enjoy watching 🎉';
-            window.location.href = SMARTLINK;
+            goToSmartlink();
         }
     }, 1000);
 
@@ -377,12 +393,15 @@
     const viewerEl = document.getElementById('viewerCount');
     viewerEl.textContent = viewers.toLocaleString('en-US');
 
-    setInterval(() => {
+    viewerInterval = setInterval(() => {
         const delta = Math.floor(Math.random() * 21) - 8;
         viewers = Math.max(980, viewers + delta);
         viewerEl.textContent = viewers.toLocaleString('en-US');
     }, 3000);
 </script>
+
+<!-- Ad script ditaruh di bawah + async biar gak render-blocking -->
+<script src="https://www.highperformanceformat.com/b25f25b0bebbcab9e05cd87e0e64b586/invoke.js" async></script>
 
 </body>
 </html>
